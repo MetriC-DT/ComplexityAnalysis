@@ -1,8 +1,6 @@
 import Complexity.Complexity;
-import Sort.BubbleSort;
-import Sort.MergeSort;
-import Sort.QuickSort;
-import Sort.SinkSort;
+import Reader.*;
+import Sort.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
@@ -19,7 +17,11 @@ public class Main extends Application {
             new BubbleSort(),
             new SinkSort(),
             new MergeSort(),
-            new QuickSort()
+            new QuickSort(),
+            /*
+            new BufferedReader(),
+            new ScannerReader(),
+             */
     };
 
     /**
@@ -29,8 +31,8 @@ public class Main extends Application {
     private Long[][] getData() {
         Long[][] data = new Long[complexities.length][maxComplexity];
         for (int i = 0; i < complexities.length; i++) {
-            for (int j = 0; j < maxComplexity; j++) {
-                data[i][j] = complexities[i].runTest(j, performance);
+            for (int j = 1; j <= maxComplexity; j++) {
+                data[i][j-1] = complexities[i].runTest(j, performance);
             }
         }
         return data;
