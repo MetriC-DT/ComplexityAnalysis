@@ -1,11 +1,10 @@
-import Complexity.Complexity;
-import Reader.*;
+import Complexity.*;
+import Other.*;
 import Sort.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.stage.Stage;
-import Complexity.Performance;
 
 public class Main extends Application {
 
@@ -15,21 +14,24 @@ public class Main extends Application {
 
     private static Complexity[] complexities = {
             new BubbleSort(),
-            new SinkSort(),
+            // new SinkSort(),
             new MergeSort(),
             new QuickSort(),
-            /*
-            new BufferedReader(),
-            new ScannerReader(),
-             */
+            // new BufferedReader(),
+            // new ScannerReader(),
+            // new TestAlgorithm0(),
     };
+
+    private final NumberAxis xAxis = new NumberAxis();
+    private final NumberAxis yAxis = new NumberAxis();
+    private final ScatterChart<Number,Number> chart = new ScatterChart<>(xAxis, yAxis);
 
     /**
      * gets the data needed to plot the chart
      * @return array of data points for each complexity
      */
-    private Long[][] getData() {
-        Long[][] data = new Long[complexities.length][maxComplexity];
+    private long[][] getData() {
+        long[][] data = new long[complexities.length][maxComplexity];
         for (int i = 0; i < complexities.length; i++) {
             for (int j = 1; j <= maxComplexity; j++) {
                 data[i][j-1] = complexities[i].runTest(j, performance);
@@ -38,6 +40,27 @@ public class Main extends Application {
         return data;
     }
 
+    /**
+     * inserts the listed data into the chart.
+     * @param data data to input
+     */
+    private void insertData(long[][] data) {
+        for (int i = 0; i < data.length; i++) {
+            XYChart.Series<Number, Number> series = new XYChart.Series<>();
+            series.setName(complexities[i].name());
+
+            for (int j = 0; j < data[i].length; j++) {
+                series.getData().add(new XYChart.Data<>(j, data[i][j]));
+            }
+
+            chart.getData().add(series);
+        }
+    }
+
+    /**
+     * Main entry point of the application.
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         if (args.length == 1) {
             try {
@@ -77,25 +100,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        Long[][] data = getData();
         stage.setTitle("Chart");
-        final NumberAxis xAxis = new NumberAxis();
-        final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Complexity");
         yAxis.setLabel("Time");
-        final ScatterChart<Number,Number> chart = new ScatterChart<>(xAxis,yAxis);
         chart.setTitle("Complexity Chart");
 
-        for (int i = 0; i < data.length; i++) {
-            XYChart.Series<Number, Number> series = new XYChart.Series<>();
-            series.setName(complexities[i].name());
-
-            for (int j = 0; j < data[i].length; j++) {
-                series.getData().add(new XYChart.Data<>(j, data[i][j]));
-            }
-
-            chart.getData().add(series);
-        }
+        // TODO Optimize getData and insertData with threads (maybe put them together)
+        long[][] data = getData();
+        insertData(data);
 
         Scene scene  = new Scene(chart,800,600);
 
