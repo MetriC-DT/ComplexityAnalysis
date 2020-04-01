@@ -14,7 +14,7 @@ public abstract class Sort implements Complexity {
      * @param complexity size of array
      * @return random integer array with size complexity
      */
-    static int[] generateRandomArray(int complexity) {
+    public static int[] generateRandomArray(int complexity) {
         int[] arr = new int[complexity];
         for (int i = 0; i < complexity; i++) {
             arr[i] = r.nextInt();
@@ -27,7 +27,7 @@ public abstract class Sort implements Complexity {
      * @param complexity size of array
      * @return increasing integer array with size complexity
      */
-    static int[] generateAscendingArray(int complexity) {
+    public static int[] generateAscendingArray(int complexity) {
         int[] arr = new int[complexity];
         for (int i = 0; i < complexity; i++) {
             arr[i] = i;
@@ -40,7 +40,7 @@ public abstract class Sort implements Complexity {
      * @param complexity size of array
      * @return descending integer array with size complexity
      */
-    static int[] generateDescendingArray(int complexity) {
+    public static int[] generateDescendingArray(int complexity) {
         int[] arr = new int[complexity];
         for (int i = 0; i < complexity; i++) {
             arr[i] = complexity - i;

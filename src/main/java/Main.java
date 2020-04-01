@@ -13,12 +13,10 @@ public class Main extends Application {
     private static Performance performance = Performance.AVERAGE;
 
     private static Complexity[] complexities = {
-            new BubbleSort(),
-            // new SinkSort(),
-            new MergeSort(),
-            new QuickSort(),
-            // new BufferedReader(),
-            // new ScannerReader(),
+            // new BubbleSort(),
+            new SinkSort(),
+            // new MergeSort(),
+            // new QuickSort(),
             // new TestAlgorithm0(),
     };
 
@@ -109,7 +107,7 @@ public class Main extends Application {
         long[][] data = getData();
         insertData(data);
 
-        Scene scene  = new Scene(chart,800,600);
+        Scene scene  = new Scene(chart, 800, 600);
 
         stage.setScene(scene);
         stage.show();
