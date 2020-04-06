@@ -7,16 +7,16 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private static int maxComplexity = 5000;
+    private static int maxComplexity = 6000;
 
     private static Performance performance = Performance.AVERAGE;
 
     private static Complexity[] complexities = {
             // new BubbleSort(),
             // new SinkSort(),
-            new BadMergeSort(),
-            new QuickSort(),
             new MergeSort(),
+            new QuickSort(),
+            new AlternateMergeSort(),
             // new TestAlgorithm0(),
     };
 

@@ -69,8 +69,8 @@ public class SortTest {
     }
 
     @Test
-    void BadMergeSortTest() {
-        testAllCases(new BadMergeSort());
+    void AlternateMergeSortTest() {
+        testAllCases(new AlternateMergeSort());
     }
 
     @Test
