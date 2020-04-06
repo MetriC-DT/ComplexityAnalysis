@@ -1,5 +1,4 @@
 import Complexity.*;
-import Other.*;
 import Sort.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -8,15 +7,16 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private static int maxComplexity = 3000;
+    private static int maxComplexity = 5000;
 
     private static Performance performance = Performance.AVERAGE;
 
     private static Complexity[] complexities = {
             // new BubbleSort(),
-            new SinkSort(),
-            // new MergeSort(),
-            // new QuickSort(),
+            // new SinkSort(),
+            new BadMergeSort(),
+            new QuickSort(),
+            new MergeSort(),
             // new TestAlgorithm0(),
     };
 

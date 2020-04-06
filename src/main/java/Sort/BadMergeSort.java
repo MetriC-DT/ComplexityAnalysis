@@ -1,6 +1,6 @@
 package Sort;
 
-public class MergeSort extends Sort {
+public class BadMergeSort extends Sort {
     @Override
     public void sort(int[] arr) {
         mergeSort(arr, 0, arr.length);
